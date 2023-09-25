@@ -10,18 +10,8 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['time']))
-{
-    $_SESSION['time'] = 0;
-}
 
-if (isset($_POST['submit']))
-{
-    $_SESSION['time']+=1;
-}
-    echo "{$_SESSION['time']}"."</br>";
-
-//------------------------------------------------------------------
+//------------------------------三個亂數------------------------------------
 
 if (isset($_POST['submit']))
     {
@@ -37,12 +27,32 @@ if (isset($_POST['submit']))
                     $rand[]=$randon;
                 }
             }
-            print_r($rand);
-            echo "</br>";
-            $rand=array();
         }
-    }
+        $_SESSION['arr']=$rand;3
+//------------------------------計算次數-----------------------------------
 
+            if (!isset($_SESSION['time']))
+            {
+                $_SESSION['time'] = 0;
+            }
+
+            if (isset($_POST['submit']))
+            {
+                $_SESSION['time']+=1;
+            }
+//-------------------------------計算相等-----------------------------------------------------------------------
+        $result = abs($_SESSION['arr'][1] - $_SESSION['arr'][0]) ==  abs($_SESSION['arr'][2] - $_SESSION['arr'][1]);
+    }
+//------------------------------確認是第幾次--------------------------------------------------------------------
+
+if(!isset($_SESSION['check']))
+{
+    $_SESSION['check']=0;
+}
+else
+{
+    $_SESSION['check']=1;
+}
 ?>
 </form>
 </body>
